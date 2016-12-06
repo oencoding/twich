@@ -6,20 +6,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            
-            
-            
-            
-            
-
-           
             <?php
                 $apiStreams = twitchStreams('nadriel_nexus');
                 $apiChannel = twitchChannel('nadriel_nexus');
                 $apiVideos = twitchVideo('nadriel_nexus');
             ?>
-                <div class="col-md-8"><?= $apiStreams['messageEtat']; ?></div>
-                <div class="col-md-4">Emplacement Photos</div>
+                <div class="col-md-8" style="text-align:center;"><h2><?= $apiStreams['messageEtat']; ?></h2></div>
+                <div class="col-md-4" style="text-align:right;"><img src="<?= $apiChannel->logo; ?>" width="100px" alt="logo" /></div>
             <?php
             
                 if($apiStreams['etat'] == false)
@@ -44,12 +37,8 @@
                 {
                     echo 'Affichage Live';
                 }
-            var_dump($apiVideos->videos);
-                
-               
-             
-
-            ?>
+            //var_dump();
+ ?>
             
             
             
@@ -58,6 +47,38 @@
     </div>
 
 </div>
+
+<!--JS NAVIGATION-->
+<script type="text/javascript">
+    $(document).ready(function () {
+    var trigger = $('.hamburger'),
+      overlay = $('.overlay'),
+     isClosed = false;
+
+    trigger.click(function () {
+      hamburger_cross();      
+    });
+
+    function hamburger_cross() {
+
+      if (isClosed == true) {          
+        overlay.hide();
+        trigger.removeClass('is-open');
+        trigger.addClass('is-closed');
+        isClosed = false;
+      } else {   
+        overlay.show();
+        trigger.removeClass('is-closed');
+        trigger.addClass('is-open');
+        isClosed = true;
+      }
+  }
+  
+  $('[data-toggle="offcanvas"]').click(function () {
+        $('#wrapper').toggleClass('toggled');
+  });  
+});
+</script>
 
 
 <?php include 'includes/footer.php'; ?>  
